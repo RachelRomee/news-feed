@@ -1,3 +1,6 @@
+// to use later in the col function
+import _ from 'lodash';
+
 //  12 columns
 const cols = 12;
 //  1 percent gutter (13 including outside)
@@ -11,17 +14,17 @@ export const row = {
 };
 
 export const colBase = {
-  float: 'left'
-  margin: '0 $(gutter/2)%'
+  float: 'left',
+  margin: `0 $(gutter/2)%`
 };
 
 export function col(n) {
   // width of each column, last part: if you take 3 columns for 1 item it will also have the gutter wirdt
-  let guttersWidth = (n - 1) * gutter
+  let guttersWidth = (n - 1) * gutter;
   let colWidth = baseColWidth * n + guttersWidth;
   // extend the styles from colBase
-  return.Object.extend({
+  return _.extend({
     // use string interpolation for percentage (here divide 100% in 12 columns and 11xgutter)
-    width: '${colWidth}%'
+    width: `${colWidth}%`
   }, colBase);
 }
