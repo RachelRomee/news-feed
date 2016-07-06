@@ -2,6 +2,9 @@ import React from 'react';
 import $ from 'jquery';
 import NewsItem from './NewsItem';
 
+import { containerStyle } from './styles/containers';
+import { row, col } from './styles/grid';
+
 class NewsFeed extends React.Component {
   constructor() {
     super();
@@ -67,11 +70,12 @@ class NewsFeed extends React.Component {
     return(
       <div>
         <h1>{title}</h1>
-
-        <div>
-          {newsItems.map(this.renderNewsItem.bind(this))}
+        <div style={ row }>
+          <div style={ col(4) }>
+            {newsItems.map(this.renderNewsItem.bind(this))}
+          </div>
         </div>
-      </div>
+      </div>  
     );
   }
 }
