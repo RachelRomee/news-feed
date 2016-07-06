@@ -4,6 +4,7 @@ import React from 'react';
 // import { responsiveWidth } from './styles/containers';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 
 
 class NewsItem extends React.Component {
@@ -15,20 +16,20 @@ class NewsItem extends React.Component {
       // Card is imported above (along with other components)
       <Card>
         <CardHeader
-          title={this.props.item.author} />
+          title={this.props.item.author}
+        />
         <CardMedia
-          overlay={<CardTitle title={this.props.item.title} subtitle={this.props.item.categories.join(",")} />}
-          >
-          <img src={this.props.image}/>
+          overlay={<CardTitle title={this.props.item.title} subtitle={this.props.item.categories.join(", ")} />}
+        >
+          <img src={this.props.image} />
         </CardMedia>
-        <CardTitle title="Card title" subtitle="Card subtitle" />
-        <CardText>
-          <p>{this.props.item.contentSnippet}</p>
+        <CardText dangerouslySetInnerHTML={{__html: this.props.item.contentSnippet}}>
         </CardText>
         <CardActions>
-          <a href={this.props.link}>Read more</a>
-          <FlatButton label="Action1" />
-          <FlatButton label="Action2" />
+          <RaisedButton label="Read" primary={true} linkButton={true} href={this.props.link} />
+          {this.props.item.categories.map((category) => {
+            return (<FlatButton label={category} />);
+          })}
         </CardActions>
       </Card>
     );

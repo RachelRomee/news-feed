@@ -2,9 +2,8 @@ import React from 'react';
 import $ from 'jquery';
 import NewsItem from './NewsItem';
 
-import { containerStyle } from './styles/containers';
-import { row } from './styles/grid';
-import fancyTitle from './styles/fancyTitle';
+import FancyTitle from './styles/fancyTitle';
+import RefreshIndicator from 'material-ui/RefreshIndicator';
 
 class NewsFeed extends React.Component {
   constructor() {
@@ -46,8 +45,6 @@ class NewsFeed extends React.Component {
   }
 
   renderNewsItem(item, index) {
-    console.log(item);
-
     // use jQuery to select the image src from the content element in the xml file. Returns an array with image at index 0
     var content = $("<div/>").html(item.content);
     var image = $("img", content).attr("src");
@@ -71,19 +68,27 @@ class NewsFeed extends React.Component {
     let newsItems = this.state.newsItems;
 
     return(
-      <div style={containerStyle}>
+      <div>
         <FancyTitle label={title} />
-        <div style={ row }>
+
+        <div>
           {newsItems.map(this.renderNewsItem.bind(this))}
         </div>
       </div>
     );
   }
-}
+
 
   // material ui loader (also need to include!)
   renderLoading() {
-    // <RefreshIndicator...
+    return(
+      <RefreshIndicator
+        top={100}
+        left={window.innerWidth / 2 - 50}
+        size={100}
+        loadingColor={"#FF9800"}
+        status="loading" />
+    );
   }
 
   render() {
@@ -93,5 +98,5 @@ class NewsFeed extends React.Component {
 
     return this.renderList();
   }
-
+}
 export default NewsFeed;

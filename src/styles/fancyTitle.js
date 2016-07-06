@@ -1,18 +1,19 @@
 import React from 'react';
 
-const fancyTitleBaseStyle ={
+const FancyTitleBaseStyle ={
   fontFamily: 'Roboto sans-serif',
   fontWeight: 'bolder',
   fontSize: '4rem'
 };
 
-class fancyTitle extends React.Component {
+class FancyTitle extends React.Component {
   render() {
     return (
-      <h1 style={fancyTitle}
+      <h1 style={FancyTitleBaseStyle}>
+        {this.props.label}
       </h1>
     );
   }
 }
 
-export defaultFancyTitle;
+export default FancyTitle;

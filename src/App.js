@@ -11,6 +11,14 @@ const feedUrl = "http://thenextweb.com/feed/";
 
 class App extends React.Component {
     render() {
+    // for with the route to category, see app.js and index.js
+    alert(this.props.params.category);
+    // var entries = this.state.feed.entries;
+
+    // debugging way for console
+    // if(entries.length > 0) {
+    //   debugger
+    // }
         return (
             <MuiThemeProvider>
               <NewsFeed url={feedUrl} />
