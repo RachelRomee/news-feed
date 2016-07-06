@@ -4,6 +4,7 @@ import NewsItem from './NewsItem';
 
 import { containerStyle } from './styles/containers';
 import { row } from './styles/grid';
+import fancyTitle from './styles/fancyTitle';
 
 class NewsFeed extends React.Component {
   constructor() {
@@ -11,7 +12,9 @@ class NewsFeed extends React.Component {
 
     this.state = {
       title: "Loading...",
-      newsItems: []
+      newsItems: [],
+      // for the loader, whole loading the news item
+      loading: true
     };
   }
 
@@ -35,7 +38,8 @@ class NewsFeed extends React.Component {
        success: function(xml){
          component.setState({
            title: xml.responseData.feed.title,
-           newsItems: xml.responseData.feed.entries
+           newsItems: xml.responseData.feed.entries,
+           loading: false
          });
        }
      });
@@ -54,22 +58,21 @@ class NewsFeed extends React.Component {
     return (
       <NewsItem
         key={index}
-        title={item.title}
+        item={item}
         image={image}
-        description={item.contentSnippet}
         link={item.link} />
     );
   }
 
   // Visible Code
   // -----------------
-  render() {
+  renderList() {
     let title = this.state.title;
     let newsItems = this.state.newsItems;
 
     return(
       <div style={containerStyle}>
-        <h1>{title}</h1>
+        <FancyTitle label={title} />
         <div style={ row }>
           {newsItems.map(this.renderNewsItem.bind(this))}
         </div>
@@ -77,5 +80,18 @@ class NewsFeed extends React.Component {
     );
   }
 }
+
+  // material ui loader (also need to include!)
+  renderLoading() {
+    // <RefreshIndicator...
+  }
+
+  render() {
+    if (this.state.loading){
+      return this.renderLoading();
+    }
+
+    return this.renderList();
+  }
 
 export default NewsFeed;
