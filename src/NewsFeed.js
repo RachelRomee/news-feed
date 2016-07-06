@@ -2,7 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import NewsItem from './NewsItem';
 
-import FancyTitle from './styles/fancyTitle';
+import FancyTitle from './styles/FancyTitle';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 
 class NewsFeed extends React.Component {
@@ -99,4 +99,5 @@ class NewsFeed extends React.Component {
     return this.renderList();
   }
 }
+
 export default NewsFeed;
