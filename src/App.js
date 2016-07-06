@@ -10,7 +10,7 @@ injectTapEventPlugin();
 const feedUrl = "http://thenextweb.com/feed/";
 
 class App extends React.Component {
-    render() {
+  render() {
     // for with the route to category, see app.js and index.js
     // alert(this.props.params.category);
     // var entries = this.state.feed.entries;
@@ -19,12 +19,12 @@ class App extends React.Component {
     // if(entries.length > 0) {
     //   debugger
     // }
-        return (
-            <MuiThemeProvider>
-              <NewsFeed url={feedUrl} />
-            </MuiThemeProvider>
-        );
-    }
+    return (
+        <MuiThemeProvider>
+          <NewsFeed url={feedUrl} category={this.props.params.category}/>
+        </MuiThemeProvider>
+    );
+  }
 }
 
 export default App;

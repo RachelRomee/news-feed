@@ -1,9 +1,9 @@
 import React from 'react';
 import $ from 'jquery';
-import NewsItem from './NewsItem';
-
-import FancyTitle from './styles/FancyTitle';
+import _ from 'lodash';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
+import NewsItem from './NewsItem';
+import FancyTitle from './styles/FancyTitle';
 
 class NewsFeed extends React.Component {
   constructor() {
@@ -66,6 +66,15 @@ class NewsFeed extends React.Component {
   renderList() {
     let title = this.state.title;
     let newsItems = this.state.newsItems;
+    // needs to be defined for filter to show posts of category on one page, because otherwise 'this' is not the same
+    let category = this.props.category;
+
+    // if statement so it won't break when an item doesn't have a category, category because empty string is false
+    if(category){
+      newsItems = _.filter(newsItems, function(item) {
+        return _.includes(item.categories, category);
+      });
+    }
 
     return(
       <div>
