@@ -41,12 +41,19 @@ class NewsFeed extends React.Component {
   renderNewsItem(item, index) {
     console.log(item);
 
+    // use jQuery to select the image src from the content element in the xml file. Returns an array with image at index 0
+    var content = $("<div/>").html(item.content);
+    var image = $("img", content).attr("src");
+    // console.log($content);
+    // console.log(img);
+
+    // on left side (description) for use in react, item.contentSnippet is from the feed file
     return (
       <NewsItem
         key={index}
         title={item.title}
-        image={item.image}
-        abstract={item.abstract}
+        image={image}
+        description={item.contentSnippet}
         link={item.link} />
     );
   }
